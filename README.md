@@ -57,7 +57,7 @@ We provide demos as Jupyter notebooks in the `notebooks/` directory using pretra
 </div>
 
 ### Download the respective checkpoints and data
-The checkpoints and data are hosted on Amazon AWS, which will be automatically downloaded and extracted by running the downloading scripts:
+The checkpoints and data are hosted on Amazon AWS, which will be automatically downloaded and extracted by running the downloading script:
 ```
 python download.py inference
 ```
@@ -122,11 +122,11 @@ For details, see examples in `notebooks/`.
 
 ## Train from Scratch
 ### Download the demo training dataset
-The demo training data is hosted on Amazon AWS, which will be automatically downloaded by running the downloading scripts:
+The demo training data is hosted on Amazon AWS, which will be automatically downloaded by running the downloading script:
 ```
 python download.py train
 ```
-The checkpoints and data will be downloaded and their checksums will be validated.
+The data will be downloaded and their checksums will be automatically validated.
 
 ### Train a classifier for guidance
 Classifier guidance is needed to sample images from a given diffusion model. To train a classifier on the categorical labels of the training data, please refer to the script `scripts/run-class_conditional_classifier_training.sh`.
