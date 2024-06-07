@@ -83,7 +83,7 @@ The name of each image file should contain two parts separated by two underscore
 ```
 <categorical_class_label>__<image_id>.png
 ```
-`<categorical_class_label>` is the name of the categorical domain that this image is in. `<image_id>` is the identifier for each image and should be unique. 
+`<categorical_class_label>` is the name of the categorical domain that this image is in. `<image_id>` is the identifier for each image and should be unique. Some demo image datasets are under `download/inference/demo_data/`.
 
 #### Examples in Jupyter Notebooks
 The examples as Jupyter Notebooks in `notebooks/` programmatically prepare the instructions to execute the image translation process. It executes `scripts/run-general_image_translation.sh` on the command line and therefore dependent on the previous step.
@@ -99,7 +99,7 @@ A specification needs to be provided in `<log_dir>` as `<log_dir>/modification.p
   }
 }
 ```
-For details, see examples in notebooks/.
+For details, see examples in `notebooks/`.
 #### Omics-guided image editing
 For omics-guided image editing, two additional steps are required:
 1. You need to provide the original genomic and transcriptomic profiles of the samples where the images come from. `<image_id>` is used internally to retrieve the genomic and transcriptomic profiles. The original genomic and transcriptomic profiles are provided in the arguments `--genomics_table_fp` and `--transcriptomics_table_fp`. The genomic and transcriptomic profiles for TCGA images are provided in `download/inference/demo_data/TCGA-general/`. See `scripts/dataset_specific_configurations/TCGA.sh` for usage examples.
