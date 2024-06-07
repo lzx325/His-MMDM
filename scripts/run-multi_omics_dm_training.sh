@@ -1,3 +1,5 @@
+REPO_DIR="$(dirname $(dirname $(realpath $0)))"
+cd "$REPO_DIR"
 source scripts/setup.sh
 
 lr="3e-5"
@@ -47,7 +49,7 @@ DIFFUSION_SAMPLING_FLAGS=" \
 --num_diffusion_samples 2 \
 "
 # If srun needs to be used for multi-node or multi-GPU execution, add something like this to the front of the command line
-# srun -u --jobid <jobid> --nodes 1 --ntasks 2 --pty \
+# srun -u --jobid <jobid> --nodes 1 --ntasks 2 \
 CMD=(
     python -u scripts/omics_image_train.py \
     $DATA_OPTIONS \

@@ -43,7 +43,7 @@ TRANSLATION_FLAGS="
 DATA_DIR="$DATA_DIR"
 
 # If srun needs to be used for multi-node or multi-GPU execution, add something like this to the front of the command line
-# srun -u --jobid <allocated_jobid> --nodes 1 --ntasks 2 \
+# srun -u --jobid <jobid> --nodes 1 --ntasks 2 \
 CMD=(
     python -u scripts/general_image_translation.py \
     $MODEL_FLAGS \

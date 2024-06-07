@@ -74,7 +74,7 @@ The `<config_name>` is the name of the configurations for each dataset, which is
 
 `<source_image_dir>` is the directory holding the source images for translation. The demo images are held in the directories under `download/inference/demo_data/`
 
-`<log_dir>` is the directory holding the logs and translated images during translation.
+`<log_dir>` is the directory to save the translated images and the logs during translation.
 
 The script `run-general_image_translation.sh` needs to be modified on your system if you want to use multiple GPUs or nodes. Depending on your system, use either `srun` or `mpirun`.
 
@@ -85,10 +85,40 @@ The name of each image file should contain two parts separated by two underscore
 ```
 `<categorical_class_label>` is the name of the categorical domain that this image is in. `<image_id>` is the identifier for each image and should be unique. 
 
-For omics-guided image editing, `<image_id>` is used internally to retrieve the genomic and transcriptomic profiles. The genomic and transcriptomic profiles are specified in the arguments `--genomics_table_fp` and `--transcriptomics_table_fp`. See `scripts/dataset_specific_configurations/TCGA.sh` for an example.
-
 #### Examples in Jupyter Notebooks
-The examples in Jupyter Notebooks programmatically prepare the instructions to execute the image translation process. It executes `scripts/run-general_image_translation.sh` on the command line and therefore dependent on the previous step.
+The examples as Jupyter Notebooks in `notebooks/` programmatically prepare the instructions to execute the image translation process. It executes `scripts/run-general_image_translation.sh` on the command line and therefore dependent on the previous step.
+
+#### Specifications of image translation
+A specification needs to be provided in `<log_dir>` as `<log_dir>/modification.pkl` or `<log_dir>/modification.yaml` before executing translation. An example that translates images across multiple TCGA primary sites is as follows:
+
+```{python}
+{
+  'TCGA-COAD__source_image_01.png': {
+      'contents': {'y': ['TCGA-BRCA','TCGA-LUAD']},
+      'labels': ['BRCA','LUAD']
+  }
+}
+```
+For details, see examples in notebooks/.
+#### Omics-guided image editing
+For omics-guided image editing, two additional steps are required:
+1. You need to provide the original genomic and transcriptomic profiles of the samples where the images come from. `<image_id>` is used internally to retrieve the genomic and transcriptomic profiles. The original genomic and transcriptomic profiles are provided in the arguments `--genomics_table_fp` and `--transcriptomics_table_fp`. The genomic and transcriptomic profiles for TCGA images are provided in `download/inference/demo_data/TCGA-general/`. See `scripts/dataset_specific_configurations/TCGA.sh` for usage examples.
+
+2. You need to provide translation specifications for the genomic and transcriptomic profiles, e.g.,
+```{python}
+{
+    "TCGA-COAD__source_image_02.png":{
+        'contents':{
+            'genomics_mutation':{
+                'APC': [0, 1, 0, 1, None],
+                'TP53': [0, 0, 1, 1, 1]
+            }
+        },
+        'labels':['none','APC_only','TP53_only','APC_and_TP53','APC_unmodified_and_TP53']
+    }
+}
+```
+For details, see examples in `notebooks/`.
 
 ## Train from Scratch
 ### Download the demo training dataset

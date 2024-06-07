@@ -46,7 +46,7 @@ DIFFUSION_SAMPLING_FLAGS=" \
 "
 
 # If srun needs to be used for multi-node or multi-GPU execution, add something like this to the front of the command line
-# srun -u --jobid 34360485 --nodes 1 --ntasks 2
+# srun -u --jobid <jobid> --nodes 1 --ntasks 2
 CMD=( 
     python -u scripts/image_train.py \
     $DATA_OPTIONS \

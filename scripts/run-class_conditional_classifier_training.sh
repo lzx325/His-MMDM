@@ -1,3 +1,6 @@
+REPO_DIR="$(dirname $(dirname $(realpath $0)))"
+cd "$REPO_DIR"
+
 source scripts/setup.sh
 
 lr="1e-3"
@@ -16,7 +19,7 @@ TRAIN_FLAGS="--lr ${lr} --batch_size ${batch_size}"
 DATA_DIR="$DATA_DIR"
 
 # If srun needs to be used for multi-node or multi-GPU execution, add something like this to the front of the command line
-# srun --jobid 34360485 -u --nodes 1 --ntasks 2 --pty \
+# srun --jobid <jobid> -u --nodes 1 --ntasks 2 \
 CMD=(
     python -u scripts/classifier_train.py \
     --data_dir "$DATA_DIR" \
