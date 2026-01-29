@@ -4,15 +4,15 @@
 
 This repository contains the implementation of His-MMDM from
 
-```
-Zhongxiao Li et al.,"His-MMDM: Multi-domain and Multi-omics Translation of Histopathology Images with Diffusion Models"
-```
-If you use our work in your research, please cite our [paper](https://www.medrxiv.org/content/10.1101/2024.07.11.24310294v2).
+> Zhongxiao Li et al. ,"His-MMDM: Multi-domain and Multi-omics Translation of Histopathology Images with Diffusion Models", *Advanced Science* (2026) 10.1002/advs.202518066
+
+
+If you use our work in your research, please cite our [paper]( https://doi.org/10.1002/advs.202518066).
 
 
 ## The architecture of His-MMDM
 <div align="center">
-  <img src="./resources/fig1-arch.png" width="800">
+  <img src="./resources/fig1-arch.jpg" width="800">
 </div>
 
 <dev align="left">
